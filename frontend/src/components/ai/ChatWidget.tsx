@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle, Minus, X } from "lucide-react";
 import { api } from "@/lib/api";
 import type { ChatResponse, ProductCard } from "@/lib/types";
 import { formatMoney } from "@/lib/utils";
@@ -74,9 +74,8 @@ export function ChatWidget() {
   return (
     <>
       {!open && (
-        <button onClick={() => openChat()} className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-ink px-4 py-3 text-sm text-cream shadow-card" aria-label="Open the stylist">
-          <MessageCircle size={18} />
-          Ask the stylist
+        <button onClick={() => openChat()} className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-ink text-cream shadow-card" aria-label="Open the stylist">
+          <MessageCircle size={22} />
         </button>
       )}
       {open && (
@@ -97,7 +96,10 @@ export function ChatWidget() {
               >
                 New
               </button>
-              <button onClick={closeChat} aria-label="Close stylist">
+              <button onClick={closeChat} className="grid h-9 w-9 place-items-center rounded-full border border-line text-cream" aria-label="Minimize stylist">
+                <Minus size={18} />
+              </button>
+              <button onClick={closeChat} className="grid h-9 w-9 place-items-center rounded-full border border-line text-cream" aria-label="Close stylist">
                 <X size={18} />
               </button>
             </div>
