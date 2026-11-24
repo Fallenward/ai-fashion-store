@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="ATELIER NORTH">
+  <rect width="800" height="1000" fill="#6b4b32"/>
+  <path d="M180 560 h440 v80 h-80 v40 h-360 z M220 520 h120 v40 h-120 z" fill="#2a1c12"/>
+  <text x="64" y="920" font-family="Georgia, serif" font-size="28" fill="#2a1c12" letter-spacing="4">ATELIER NORTH</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="HALDEN">
+  <rect width="800" height="1000" fill="#1e2a44"/>
+  <path d="M250 250 h300 v360 h-300 z M220 280 h40 v180 h-40 z M540 280 h40 v180 h-40 z" fill="#e7e1d6"/>
+  <text x="64" y="920" font-family="Georgia, serif" font-size="28" fill="#e7e1d6" letter-spacing="4">HALDEN</text>
+</svg>

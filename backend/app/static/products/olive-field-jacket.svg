@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="VESPER">
+  <rect width="800" height="1000" fill="#5d6244"/>
+  <path d="M240 230 h320 v460 h-320 z M190 260 h60 v240 h-60 z M550 260 h60 v240 h-60 z" fill="#e6e0d4"/>
+  <text x="64" y="920" font-family="Georgia, serif" font-size="28" fill="#e6e0d4" letter-spacing="4">VESPER</text>
+</svg>

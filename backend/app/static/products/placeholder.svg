@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Atelier product">
+  <rect width="800" height="1000" fill="#f4efe8"/>
+  <rect x="170" y="150" width="460" height="620" rx="28" fill="#1c1917"/>
+  <text x="400" y="860" text-anchor="middle" font-family="Georgia, serif" font-size="42" fill="#1c1917" letter-spacing="8">ATELIER</text>
+</svg>

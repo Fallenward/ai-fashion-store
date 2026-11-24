@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="SABLE & CO">
+  <rect width="800" height="1000" fill="#f6f1ea"/>
+  <path d="M300 300 h200 v200 h-200 z M360 250 h80 v50 h-80 z" fill="#c6a15b"/>
+  <text x="64" y="920" font-family="Georgia, serif" font-size="28" fill="#c6a15b" letter-spacing="4">SABLE & CO</text>
+</svg>

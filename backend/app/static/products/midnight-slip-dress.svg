@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="LUMEN">
+  <rect width="800" height="1000" fill="#1a1520"/>
+  <path d="M310 210 h180 v80 h80 v420 h-340 v-420 h80 z" fill="#3a2a38"/>
+  <text x="64" y="920" font-family="Georgia, serif" font-size="28" fill="#3a2a38" letter-spacing="4">LUMEN</text>
+</svg>
