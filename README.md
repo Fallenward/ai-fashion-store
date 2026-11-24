@@ -54,7 +54,7 @@ Docker Compose starts Postgres with pgvector, the API, and the Vite dev server.
 
 ```bash
 cp .env.example .env
-# Optional: put a Gemini key in .env. The shop runs without one.
+# Put your Gemini key in GEMINI_API_KEY. Nothing else is required for the stylist.
 docker compose up --build
 ```
 
@@ -101,16 +101,85 @@ Created by the seed. These are obvious local passwords, not real credentials.
 
 Promo code `WELCOME10` takes 10% off merchandise. Shipping is $8, and orders of $150 or more ship free before the promo is applied.
 
-## Gemini
+## Set the Gemini key
 
-1. Create a key in [Google AI Studio](https://aistudio.google.com/).
-2. Set `GEMINI_API_KEY` in `.env` or in the API container environment.
-3. Leave `GEMINI_MODEL=gemini-3.8-flash`, or set another model id. The name is read from configuration, not hardcoded through the agent.
-4. For hosted embeddings, set `EMBEDDING_PROVIDER=gemini`. The default model is `gemini-embedding-001` at 768 dimensions.
+The shop already selects Gemini. The only value you add is the key.
 
-Restart the API after changing keys. The key never goes to the browser.
+1. Create a key at [Google AI Studio](https://aistudio.google.com/apikey).
+2. Copy `.env.example` to `.env` if you have not already.
+3. Set this one line and leave the rest:
 
-If the key is empty, the API still starts. The stylist replies that Gemini is not configured.
+```bash
+GEMINI_API_KEY=your-key-here
+```
+
+4. Start the stack with `docker compose up --build`, or restart the API if it is already running.
+
+The key stays on the server. It is not sent to the browser, and `.env` is gitignored. `GEMINI_MODEL` is already `gemini-3.5-flash-lite`. If that model is busy, the API tries another Gemini model. You do not need to change the model name for a normal setup.
+
+If `GEMINI_API_KEY` is empty, the API still starts. The stylist says that Gemini is not configured, and the rest of the shop keeps working.
+
+For hosted embeddings, set `EMBEDDING_PROVIDER=gemini`. The embedding model is `gemini-embedding-001` at 768 dimensions. The default `local` embeddings are enough to try the stylist.
+
+## Try the stylist
+
+Open http://localhost:5173. The round message icon at the lower right opens the stylist. The minus icon folds the chat down and keeps the conversation. Click **New** between these messages so each answer stands alone. Product answers should include cards that link to the product page.
+
+Search by words, category, size, color, brand, and price:
+
+```text
+Show me a black Halden hoodie in size M under $60.
+```
+
+Expect the Black Oversized Hoodie at $54, not the Navy Zip Hoodie at $78.
+
+Open one product:
+
+```text
+Tell me about the Charcoal Wool Overcoat: the description, price, sizes, colors, and whether it is in stock.
+```
+
+Expect $240, charcoal, the size list, and a card for that coat.
+
+Check how many of each size and color are left:
+
+```text
+How many of the Black Oversized Hoodie are left in each size? I especially want the XL count.
+```
+
+Expect XL to be the low size, with 2 left.
+
+Compare up to four products:
+
+```text
+Compare the Black Oversized Hoodie, the Navy Zip Hoodie, the Black Turtleneck, and the Cream Cashmere Sweater on price, material, and stock.
+```
+
+Expect four prices: $54, $78, $72, and $145.
+
+Find other in-stock pieces in the same category:
+
+```text
+The Charcoal Wool Overcoat is outerwear. What other outerwear is in stock?
+```
+
+Expect the sand trench, olive field jacket, or beige blazer.
+
+Build an outfit from live stock, an occasion, and a budget:
+
+```text
+Build a casual dinner outfit from what is in stock. Keep the clothes under $400, mostly black and cream.
+```
+
+Expect real catalog pieces, with prices, and cards in the chat.
+
+Answer shipping, returns, FAQ, and brand questions from the store documents:
+
+```text
+What is your return policy, how much is shipping, what does WELCOME10 do, and how would you describe the brand?
+```
+
+Expect 30 days for unworn items with tags, $8 shipping, free shipping at $150, and 10% off merchandise.
 
 ## Ollama
 
@@ -156,7 +225,7 @@ See `.env.example`.
 | `DATABASE_URL` | SQLAlchemy URL. Compose overrides this to the `db` service. |
 | `LLM_PROVIDER` | `gemini`, `ollama`, or `none`. |
 | `GEMINI_API_KEY` | Server-only Gemini key. |
-| `GEMINI_MODEL` | Defaults to `gemini-3.8-flash`. |
+| `GEMINI_MODEL` | Defaults to `gemini-3.5-flash-lite`. Override only if you want another Gemini model. |
 | `OLLAMA_BASE_URL`, `OLLAMA_MODEL` | Local model. |
 | `EMBEDDING_PROVIDER` | `local` (default), `gemini`, or `ollama`. |
 | `GEMINI_EMBEDDING_MODEL` | Defaults to `gemini-embedding-001`. |
