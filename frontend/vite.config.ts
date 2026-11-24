@@ -11,9 +11,9 @@ export default defineConfig({
     host: true,
     port: 5173,
     proxy: {
-      "/api": proxyTarget,
-      "/uploads": proxyTarget,
-      "/static": proxyTarget,
+      "/api": { target: proxyTarget, timeout: 120000, proxyTimeout: 120000 },
+      "/uploads": { target: proxyTarget, timeout: 120000, proxyTimeout: 120000 },
+      "/static": { target: proxyTarget, timeout: 120000, proxyTimeout: 120000 },
     },
   },
   test: {

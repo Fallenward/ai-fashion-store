@@ -188,13 +188,13 @@ class GeminiProvider(LLMProvider):
 
     def _post(self, body: dict) -> httpx.Response | None:
         models = [self.model]
-        for name in ("gemini-3.5-flash", "gemini-3.6-flash", "gemini-flash-lite-latest"):
+        for name in ("gemini-3.5-flash-lite", "gemini-flash-lite-latest", "gemini-3.5-flash"):
             if name not in models:
                 models.append(name)
         for model in models:
             url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
             try:
-                response = httpx.post(url, json=body, headers={"x-goog-api-key": self.api_key}, timeout=60)
+                response = httpx.post(url, json=body, headers={"x-goog-api-key": self.api_key}, timeout=20)
             except httpx.HTTPError:
                 continue
             if response.status_code >= 400:
