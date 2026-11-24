@@ -15,6 +15,7 @@ class ToolCall:
     name: str
     arguments: dict
     call_id: str = ""
+    thought_signature: str = ""
 
 
 @dataclass
@@ -146,7 +147,10 @@ class GeminiProvider(LLMProvider):
                 if message.get("content"):
                     parts.append({"text": message["content"]})
                 for call in message["tool_calls"]:
-                    parts.append({"functionCall": {"name": call.name, "args": call.arguments or {}}})
+                    part = {"functionCall": {"name": call.name, "args": call.arguments or {}}}
+                    if call.thought_signature:
+                        part["thoughtSignature"] = call.thought_signature
+                    parts.append(part)
                 contents.append({"role": "model", "parts": parts})
                 continue
             gemini_role = "model" if role == "assistant" else "user"
@@ -158,12 +162,8 @@ class GeminiProvider(LLMProvider):
         }
         if tools:
             body["tools"] = [{"functionDeclarations": [_gemini_declaration(tool) for tool in tools]}]
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
-        try:
-            response = httpx.post(url, json=body, headers={"x-goog-api-key": self.api_key}, timeout=60)
-        except httpx.HTTPError as exc:
-            raise RuntimeError("The Gemini request failed.") from exc
-        if response.status_code >= 400:
+        response = self._post(body)
+        if response is None:
             raise RuntimeError("Gemini could not complete that request.")
         data = response.json()
         candidates = data.get("candidates") or []
@@ -177,8 +177,31 @@ class GeminiProvider(LLMProvider):
                 text.append(part["text"])
             if part.get("functionCall"):
                 call = part["functionCall"]
-                calls.append(ToolCall(name=call.get("name", ""), arguments=call.get("args") or {}))
+                calls.append(
+                    ToolCall(
+                        name=call.get("name", ""),
+                        arguments=call.get("args") or {},
+                        thought_signature=part.get("thoughtSignature") or "",
+                    )
+                )
         return Completion(text="\n".join(text).strip() or None, tool_calls=calls)
+
+    def _post(self, body: dict) -> httpx.Response | None:
+        models = [self.model]
+        for name in ("gemini-3.5-flash", "gemini-3.6-flash", "gemini-flash-lite-latest"):
+            if name not in models:
+                models.append(name)
+        for model in models:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+            try:
+                response = httpx.post(url, json=body, headers={"x-goog-api-key": self.api_key}, timeout=60)
+            except httpx.HTTPError:
+                continue
+            if response.status_code >= 400:
+                continue
+            self.model = model
+            return response
+        return None
 
 
 class OllamaProvider(LLMProvider):
