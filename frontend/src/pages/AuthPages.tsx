@@ -129,7 +129,7 @@ function Field({ name, label, type = "text" }: { name: string; label: string; ty
   return (
     <label className="block text-sm">
       {label}
-      <input name={name} type={type} required className="mt-1 h-11 w-full rounded-2xl border border-line bg-cream px-3" />
+      <input name={name} type={type} required className="mt-1 h-11 w-full rounded-2xl border border-line bg-white px-3" />
     </label>
   );
 }

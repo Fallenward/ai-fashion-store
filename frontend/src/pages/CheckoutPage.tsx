@@ -125,7 +125,7 @@ function Field({ name, label, defaultValue, required = true, className = "" }: {
   return (
     <label className={`block text-sm ${className}`}>
       {label}
-      <input name={name} required={required} defaultValue={defaultValue} className="mt-1 h-11 w-full rounded-2xl border border-line bg-cream px-3" />
+      <input name={name} required={required} defaultValue={defaultValue} className="mt-1 h-11 w-full rounded-2xl border border-line bg-white px-3" />
     </label>
   );
 }

@@ -4,20 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: "#f3eee6",
-        cream: "#fbf7f2",
-        ink: "#1c1917",
-        stone: "#6f675f",
-        line: "#e4dbd1",
-        wine: "#6d2a38",
-        clay: "#a68456",
+        paper: "#14110f",
+        cream: "#f4efe6",
+        ink: "#4a3f36",
+        stone: "#ddd2c6",
+        line: "#6d6258",
+        wine: "#7d3544",
+        clay: "#e4c79a",
+        white: "#241f1b",
       },
       fontFamily: {
         serif: ["Fraunces", "Georgia", "serif"],
         sans: ["Outfit", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 16px 40px rgba(28, 25, 23, 0.06)",
+        card: "0 16px 40px rgba(0, 0, 0, 0.35)",
       },
     },
   },

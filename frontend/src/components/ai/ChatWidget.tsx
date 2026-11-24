@@ -80,7 +80,7 @@ export function ChatWidget() {
         </button>
       )}
       {open && (
-        <section className="fixed inset-x-3 bottom-3 z-40 flex h-[min(720px,calc(100vh-1.5rem))] flex-col overflow-hidden rounded-[1.6rem] border border-line bg-cream shadow-card md:inset-x-auto md:right-5 md:w-[400px]" aria-label="Shopping stylist">
+        <section className="fixed inset-x-3 bottom-3 z-40 flex h-[min(720px,calc(100vh-1.5rem))] flex-col overflow-hidden rounded-[1.6rem] border border-line bg-white shadow-card md:inset-x-auto md:right-5 md:w-[400px]" aria-label="Shopping stylist">
           <header className="flex items-center justify-between border-b border-line px-4 py-3">
             <div>
               <p className="eyebrow">Atelier</p>
@@ -114,7 +114,7 @@ export function ChatWidget() {
               </div>
             )}
             {messages.map((message, index) => (
-              <div key={index} className={message.role === "user" ? "ml-8 rounded-2xl bg-ink px-3 py-2 text-sm text-cream" : "mr-4 text-sm"}>
+              <div key={index} className={message.role === "user" ? "ml-8 rounded-2xl bg-paper px-3 py-2 text-sm text-cream" : "mr-4 text-sm"}>
                 <p className="whitespace-pre-wrap">{message.content}</p>
                 {message.products && message.products.length > 0 && (
                   <div className="mt-3 space-y-2">

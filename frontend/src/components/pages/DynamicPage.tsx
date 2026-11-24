@@ -137,7 +137,7 @@ export function Newsletter({ title = "Notes from the studio", subtitle }: { titl
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="Email address"
-          className="h-12 flex-1 rounded-full border border-line bg-cream px-5"
+          className="h-12 flex-1 rounded-full border border-line bg-paper px-5"
         />
         <button disabled={pending} className="h-12 rounded-full bg-ink px-6 text-cream">
           {pending ? "Joining…" : "Subscribe"}

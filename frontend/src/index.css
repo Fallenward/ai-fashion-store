@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  color: #1c1917;
-  background: #f3eee6;
+  color: #f6f1e8;
+  background: #14110f;
+  color-scheme: dark;
   font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -12,8 +13,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(166, 132, 86, 0.16), transparent 55%),
-    #f3eee6;
+    radial-gradient(1200px 500px at 10% -10%, rgba(228, 199, 154, 0.12), transparent 55%),
+    #14110f;
+  color: #f6f1e8;
 }
 
 button, input, select, textarea {
@@ -33,7 +35,27 @@ img {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-size: 0.72rem;
-  color: #6f675f;
+  color: #e4c79a;
+}
+
+input, select, textarea {
+  color: #f6f1e8;
+}
+
+::placeholder {
+  color: #cbbfb2;
+  opacity: 1;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #f6f1e8;
+  box-shadow: 0 0 0 1000px #241f1b inset;
+}
+
+.text-wine {
+  color: #f3c4ce;
 }
 
 .link-line {

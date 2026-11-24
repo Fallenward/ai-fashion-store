@@ -104,8 +104,8 @@ export function ProductPage() {
             )}
           </div>
           <dl className="mt-8 space-y-2 text-sm text-stone">
-            {item.material && <div><dt className="inline text-ink">Material. </dt><dd className="inline">{item.material}</dd></div>}
-            {item.care && <div><dt className="inline text-ink">Care. </dt><dd className="inline">{item.care}</dd></div>}
+            {item.material && <div><dt className="inline text-cream">Material. </dt><dd className="inline">{item.material}</dd></div>}
+            {item.care && <div><dt className="inline text-cream">Care. </dt><dd className="inline">{item.care}</dd></div>}
           </dl>
         </div>
       </div>
